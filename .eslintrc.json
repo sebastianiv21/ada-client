@@ -24,6 +24,7 @@
       {
         "devDependencies": true
       }
-    ]
+    ],
+    "linebreak-style": "off"
   }
 }
