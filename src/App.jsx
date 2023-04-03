@@ -1,15 +1,22 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from '@layouts/MainLayout';
+import DashLayout from '@layouts/DashLayout';
+import Landing from '@pages/public/Landing';
+import Login from '@pages/public/Login';
+import Welcome from '@pages/private/Welcome';
 
-const App = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <>
-      <h1>{count}</h1>
-      <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-        Add count
-      </button>
-    </>
-  );
-};
+const App = () => (
+  <Routes>
+    <Route path="/" element={<MainLayout />}>
+      {/* Rutas públicas */}
+      <Route index element={<Landing />} />
+      <Route path="login" element={<Login />} />
+      {/* Rutas privadas */}
+      <Route path="dash" element={<DashLayout />}>
+        <Route index element={<Welcome />} />
+      </Route>
+    </Route>
+  </Routes>
+);
 
 export default App;
