@@ -25,6 +25,7 @@
         "devDependencies": true
       }
     ],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "import/no-unresolved": "off"
   }
 }
