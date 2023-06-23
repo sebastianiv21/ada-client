@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@layouts/MainLayout';
 import DashLayout from '@layouts/DashLayout';
-import Landing from '@pages/public/Landing';
 import Login from '@pages/public/Login';
 import Welcome from '@pages/private/Welcome';
 import UsersList from '@pages/private/users/UsersList';
@@ -13,8 +12,7 @@ const App = () => (
   <Routes>
     <Route path="/" element={<MainLayout />}>
       {/* Rutas públicas */}
-      <Route index element={<Landing />} />
-      <Route path="login" element={<Login />} />
+      <Route index element={<Login />} />
       {/* Rutas privadas */}
       <Route path="dash" element={<DashLayout />}>
         <Route index element={<Welcome />} />
