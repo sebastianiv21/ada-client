@@ -2,9 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button, Col, Container, Row, Stack,
 } from 'react-bootstrap';
-
-import PublicHeader from '@/components/UI/PublicHeader';
-import Footer from '@/components/UI/Footer';
+import { PublicHeader, Footer } from '@/components/UI';
 
 const Landing = () => {
   const navigate = useNavigate();
