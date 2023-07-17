@@ -5,8 +5,7 @@ import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import Footer from '@/components/UI/Footer';
-import PublicHeader from '@/components/UI/PublicHeader';
+import { Footer, PublicHeader } from '@/components/UI';
 
 const schema = yup.object().shape({
   email: yup
