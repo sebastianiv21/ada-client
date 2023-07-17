@@ -1,4 +1,4 @@
-import { useGetTestsQuery } from '@services/testsApiSlice';
+import { useGetTestsQuery } from '@/services/testsApiSlice';
 
 import Test from './Test';
 

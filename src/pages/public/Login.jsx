@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Form } from 'react-bootstrap';
-import PublicHeader from '@components/UI/PublicHeader';
-import Footer from '@components/UI/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import Footer from '@/components/UI/Footer';
+import PublicHeader from '@/components/UI/PublicHeader';
 
 const schema = yup.object().shape({
   email: yup
