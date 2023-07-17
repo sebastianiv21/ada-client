@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { MainLayout, DashLayout } from '@layouts';
-import { Login } from '@pages/public';
 import {
   Welcome, UsersList, User, TestsList, Test,
-} from '@pages/private';
+} from '@/pages/private';
+import { Login, NotFound } from '@/pages/public';
+import { MainLayout, DashLayout } from '@/layouts';
 import { PUBLIC_ROUTES, PRIVATE_ROUTES } from '@/app/routes';
 
 const App = () => (
@@ -24,6 +24,8 @@ const App = () => (
           <Route path={PRIVATE_ROUTES.TEST} element={<Test />} />
         </Route>
       </Route>
+      {/* Ruta 404 */}
+      <Route path="*" element={<NotFound />} />
     </Route>
   </Routes>
 );
