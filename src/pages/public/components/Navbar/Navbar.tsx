@@ -8,7 +8,7 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "Inicio", href: "/landing" },
+  { label: "Inicio", href: "/" },
   { label: "PQRS", href: "/pqrs" },
   { label: "Contacto", href: "/contacto" },
   { label: "Ingresar", href: "/login" },
@@ -18,8 +18,8 @@ const PublicNavbar: FC = () => {
   return (
     <Navbar expand="lg" sticky="top" bg="primary" data-bs-theme="light">
       <Container>
-        <Link href="/landing">
-          <Navbar.Brand className="d-flex gap-2 text-secondary fw-bold">
+        <Link href="/">
+          <Navbar.Brand className="d-flex gap-2 text-secondary">
             <img
               alt="ADA Health logo"
               src="/logo.png"
@@ -27,7 +27,7 @@ const PublicNavbar: FC = () => {
               height="30"
               className="d-inline-block align-middle"
             />
-            ADA Health
+            <strong>ADA Health</strong>
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
