@@ -8,11 +8,11 @@ import NestedRoutes from "@/components/NestedRoutes"
 
 const PublicRoutes: FC = () => {
   return (
-    <Route path="/public/:any*">
-      <NestedRoutes base="/public">
+    <Route path="/:any*">
+      <NestedRoutes base="">
         <Navbar />
         <Switch>
-          <Route path="/landing" component={Landing} />
+          <Route path="/" component={Landing} />
           <Route component={NotFound} />
         </Switch>
       </NestedRoutes>

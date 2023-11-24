@@ -19,7 +19,7 @@ const MainInfo: FC = () => {
         variant="secondary"
         size="lg"
         href="#landing-about"
-        className="me-auto rounded-pill"
+        className="me-auto"
       >
         Acerca del examen
       </Button>
