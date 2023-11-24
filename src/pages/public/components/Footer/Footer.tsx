@@ -5,7 +5,7 @@ import Images from "./components/Images"
 
 const Footer: FC = () => {
   return (
-    <footer className="fixed-bottom bg-secondary text-light py-2">
+    <footer className="bg-secondary text-light py-2">
       <Container>
         <Row className="span-2">
           <Col md={8} className="align-items-center d-flex">
