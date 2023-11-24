@@ -6,7 +6,7 @@ import PublicRoutes from "@/routes/PublicRoutes"
 
 const App: FC = () => (
   <Suspense fallback={<Spinner />}>
-    <main className="min-vh-100 d-flex flex-column bg-primary">
+    <main className="text-secondary min-vh-100 d-flex flex-column bg-primary">
       <Switch>
         <PublicRoutes />
         <Route component={NotFound} />
