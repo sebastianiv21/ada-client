@@ -3,8 +3,9 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
+  // margin: 0;
+  // display: flex;
+  // place-items: center;
   min-height: 100vh;
+  background-color: $primary;
 }

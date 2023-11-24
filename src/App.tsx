@@ -6,10 +6,12 @@ import PublicRoutes from "@/routes/PublicRoutes"
 
 const App: FC = () => (
   <Suspense fallback={<Spinner />}>
-    <Switch>
-      <PublicRoutes />
-      <Route component={NotFound} />
-    </Switch>
+    <main>
+      <Switch>
+        <PublicRoutes />
+        <Route component={NotFound} />
+      </Switch>
+    </main>
   </Suspense>
 )
 
