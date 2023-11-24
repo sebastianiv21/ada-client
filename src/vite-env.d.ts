@@ -1,2 +1,2 @@
-import 'react-scripts'
-import 'vite/client'
+import "react-scripts"
+import "vite/client"
