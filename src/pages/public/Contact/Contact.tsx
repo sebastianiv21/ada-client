@@ -8,7 +8,7 @@ const Contact: FC = () => {
   return (
     <Container fluid className="my-5">
       <TextImage image={contacto} textFirst>
-        <h2>Contáctenos</h2>
+        <h2 className="text-center">Contáctenos</h2>
         <ContactCard />
       </TextImage>
     </Container>
