@@ -8,6 +8,7 @@ import NestedRoutes from "@/components/NestedRoutes"
 import { Container } from "react-bootstrap"
 import Contact from "@/pages/public/Contact/Contact"
 import PQRS from "@/pages/public/PQRS/PQRS"
+import Login from "@/pages/public/Login/Login"
 
 const PublicRoutes: FC = () => {
   return (
@@ -19,6 +20,7 @@ const PublicRoutes: FC = () => {
             <Route path="/" component={Landing} />
             <Route path="/pqrs" component={PQRS} />
             <Route path="/contacto" component={Contact} />
+            <Route path="/login" component={Login} />
             <Route component={NotFound} />
           </Switch>
         </Container>

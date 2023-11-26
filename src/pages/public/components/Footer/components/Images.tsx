@@ -11,10 +11,18 @@ const Images: FC = () => {
         src={gobernacionHuila}
         width={150}
         fluid
-        className="align-middle"
+        className="align-middle d-none d-md-block"
       />
-      <Image src={hospitalNeiva} fluid className="align-middle" />
-      <Image src={universidadSurcolombiana} fluid className="align-middle" />
+      <Image
+        src={hospitalNeiva}
+        fluid
+        className="align-middle d-none d-md-block"
+      />
+      <Image
+        src={universidadSurcolombiana}
+        fluid
+        className="align-middle d-none d-md-block"
+      />
     </Stack>
   )
 }
