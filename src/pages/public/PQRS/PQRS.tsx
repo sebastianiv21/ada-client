@@ -10,7 +10,7 @@ const PQRS: FC = () => {
           <strong>Peticiones, Quejas, Reclamos y Sugerencias</strong>
         </h1>
         <h2>
-          Envíanos tu opinión, estamos comprometidos en la mejora continua de
+          Envíenos su opinión, estamos comprometidos en la mejora continua de
           nuestro servicio.
         </h2>
       </header>

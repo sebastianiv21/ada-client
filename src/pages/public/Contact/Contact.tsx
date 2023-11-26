@@ -7,7 +7,7 @@ import ContactCard from "./components/ContactCard"
 const Contact: FC = () => {
   return (
     <Container fluid className="my-5">
-      <TextImage image={contacto} textFirst>
+      <TextImage image={contacto}>
         <h1 className="text-center">
           <strong>Contáctenos</strong>
         </h1>
