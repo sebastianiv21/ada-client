@@ -1,6 +1,5 @@
 import { type FC } from "react"
-import { Card, Col, Ratio, Row, Stack } from "react-bootstrap"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Card, Stack } from "react-bootstrap"
 import {
   faEnvelope,
   faLocationDot,
