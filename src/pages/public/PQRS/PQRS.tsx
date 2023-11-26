@@ -1,6 +1,6 @@
 import { type FC } from "react"
 import { Card, Stack } from "react-bootstrap"
-import Form from "./components/Form"
+import PQRSForm from "./components/Form"
 
 const PQRS: FC = () => {
   return (
@@ -16,7 +16,7 @@ const PQRS: FC = () => {
       </header>
       <article>
         <Card bg="secondary" text="light" className="m-auto p-4">
-          <Form />
+          <PQRSForm />
         </Card>
       </article>
     </Stack>
