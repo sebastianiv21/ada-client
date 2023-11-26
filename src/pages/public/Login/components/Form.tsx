@@ -1,6 +1,5 @@
-import { type FC } from "react"
+import { type FC, useState } from "react"
 import { Button, Form, InputGroup } from "react-bootstrap"
-import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "wouter"

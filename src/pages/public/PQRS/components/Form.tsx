@@ -1,6 +1,5 @@
-import { type FC } from "react"
+import { type FC, useState } from "react"
 import { Button, Col, Form, Row } from "react-bootstrap"
-import { useState } from "react"
 
 const PQRSForm: FC = () => {
   const [validated, setValidated] = useState(false)
