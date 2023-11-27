@@ -50,7 +50,7 @@ const LoginForm: FC = () => {
         </InputGroup>
       </Form.Group>
       <Link
-        href="/forgot-password"
+        href="/recuperar-clave"
         className="d-block text-center mb-3 text-decoration-none"
       >
         ¿Olvidó su contraseña?

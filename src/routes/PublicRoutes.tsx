@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap"
 import Contact from "@/pages/public/Contact/Contact"
 import PQRS from "@/pages/public/PQRS/PQRS"
 import Login from "@/pages/public/Login/Login"
+import ForgotPassword from "@/pages/public/ForgotPassword/ForgotPassword"
 
 const PublicRoutes: FC = () => {
   return (
@@ -21,6 +22,7 @@ const PublicRoutes: FC = () => {
             <Route path="/pqrs" component={PQRS} />
             <Route path="/contacto" component={Contact} />
             <Route path="/login" component={Login} />
+            <Route path="/recuperar-clave" component={ForgotPassword} />
             <Route component={NotFound} />
           </Switch>
         </Container>
