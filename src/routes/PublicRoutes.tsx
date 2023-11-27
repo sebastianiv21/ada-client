@@ -10,6 +10,7 @@ import Contact from "@/pages/public/Contact/Contact"
 import PQRS from "@/pages/public/PQRS/PQRS"
 import Login from "@/pages/public/Login/Login"
 import ForgotPassword from "@/pages/public/ForgotPassword/ForgotPassword"
+import CreateAdmin from "@/pages/public/CreateAdmin/CreateAdmin"
 
 const PublicRoutes: FC = () => {
   return (
@@ -23,6 +24,7 @@ const PublicRoutes: FC = () => {
             <Route path="/contacto" component={Contact} />
             <Route path="/login" component={Login} />
             <Route path="/recuperar-clave" component={ForgotPassword} />
+            <Route path="/crear-admin" component={CreateAdmin} />
             <Route component={NotFound} />
           </Switch>
         </Container>
