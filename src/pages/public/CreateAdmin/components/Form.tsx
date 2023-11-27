@@ -180,7 +180,7 @@ const CreateAdminForm: FC = () => {
       <Row>
         <Col md="4" className="mx-auto">
           <Button type="submit" variant="primary" className="w-100">
-            Enviar
+            Crear administrador
           </Button>
         </Col>
       </Row>
