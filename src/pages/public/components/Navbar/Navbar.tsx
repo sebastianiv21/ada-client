@@ -9,7 +9,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: "Inicio", href: "/" },
-  { label: "PQRS", href: "/pqrs" },
+  // { label: "PQRS", href: "/pqrs" },
   { label: "Contacto", href: "/contacto" },
   { label: "Ingresar", href: "/login" },
 ]
