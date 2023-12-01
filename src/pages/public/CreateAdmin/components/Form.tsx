@@ -1,9 +1,12 @@
 import { type FC, useState } from "react"
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye } from "@fortawesome/free-solid-svg-icons"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import useToggle from "@/hooks/useToggle"
 
 const CreateAdminForm: FC = () => {
+  const [showPassword, toggleShowPassword] = useToggle()
+  const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
   const [validated, setValidated] = useState(false)
 
   // TODO: Add submit handler
@@ -146,13 +149,21 @@ const CreateAdminForm: FC = () => {
           <Form.Label>Contraseña</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
-              aria-describedby="inputGroupPrepend"
+              aria-describedby="paswordInput"
               required
             />
-            <Button variant="outline-primary" id="inputGroupPrepend">
-              <FontAwesomeIcon icon={faEye} />
+            <Button
+              variant="outline-primary"
+              id="paswordInput"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
             </Button>
             <Form.Control.Feedback type="invalid">
               Please choose a password.
@@ -163,13 +174,21 @@ const CreateAdminForm: FC = () => {
           <Form.Label>Confirmar contraseña</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
-              type="password"
+              type={showPasswordConfirmation ? "text" : "password"}
               placeholder="Password"
-              aria-describedby="inputGroupPrepend"
+              aria-describedby="passwordConfirmationInput"
               required
             />
-            <Button variant="outline-primary" id="inputGroupPrepend">
-              <FontAwesomeIcon icon={faEye} />
+            <Button
+              variant="outline-primary"
+              id="passwordConfirmationInput"
+              onClick={toggleShowPasswordConfirmation}
+            >
+              {showPasswordConfirmation ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
             </Button>
             <Form.Control.Feedback type="invalid">
               Please choose a password.
