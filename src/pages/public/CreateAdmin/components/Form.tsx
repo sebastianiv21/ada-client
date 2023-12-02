@@ -1,31 +1,36 @@
-import { type FC, useState } from "react"
+import { type FC } from "react"
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import useToggle from "@/hooks/useToggle"
+import { type AdminFormData, adminSchema } from "@/types/usuarioTypes"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
 
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
-  const [validated, setValidated] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    // reset,
+  } = useForm<AdminFormData>({
+    resolver: yupResolver(adminSchema),
+  })
 
   // TODO: Add submit handler
-  const handleSubmit = (event: any): any => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
-    setValidated(true)
+  const onSubmit = async (data: AdminFormData): void => {
+    console.log(data)
+    // reset()
   }
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>Tipo de documento</Form.Label>
-          <Form.Select required>
+          <Form.Select {...register("tipoDocumento")}>
             <option value="">Seleccione</option>
             <option value="1">Peticiones</option>
             <option value="2">Quejas</option>
@@ -36,51 +41,60 @@ const CreateAdminForm: FC = () => {
             Looks good!
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+
+        <Form.Group as={Col} md="4" controlId="numeroDocumentoInput">
           <Form.Label>Número de documento</Form.Label>
           <Form.Control
-            required
+            {...register("numeroDocumento")}
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese su número de documento"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Looks good!
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+
+        <Form.Group as={Col} md="4" controlId="nombresInput">
           <Form.Label>Nombres</Form.Label>
           <Form.Control
-            required
+            {...register("nombres")}
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese sus nombres"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Looks good!
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
+
       <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} md="4" controlId="apellidosInput">
           <Form.Label>Apellidos</Form.Label>
           <Form.Control
-            required
+            {...register("apellidos")}
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese sus apellidos"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Looks good!
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+
+        <Form.Group as={Col} md="4" controlId="fechaNacimientoInput">
           <Form.Label>Fecha de nacimiento</Form.Label>
           <Form.Control
-            required
+            {...register("fechaNacimiento")}
             type="date"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese su fecha de nacimiento"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Looks good!
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
+
+        <Form.Group as={Col} md="4" controlId="generoInput">
           <Form.Label>Género</Form.Label>
-          <Form.Select required>
+          <Form.Select {...register("genero")}>
             <option value="">Seleccione</option>
             <option value="1">Peticiones</option>
             <option value="2">Quejas</option>
@@ -92,10 +106,11 @@ const CreateAdminForm: FC = () => {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
+
       <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
+        <Form.Group as={Col} md="4" controlId="tipoSangreInput">
           <Form.Label>Tipo de sangre</Form.Label>
-          <Form.Select required>
+          <Form.Select {...register("tipoSangre")}>
             <option value="">Seleccione</option>
             <option value="1">Peticiones</option>
             <option value="2">Quejas</option>
@@ -106,9 +121,10 @@ const CreateAdminForm: FC = () => {
             Looks good!
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
+
+        <Form.Group as={Col} md="4" controlId="rhInput">
           <Form.Label>RH</Form.Label>
-          <Form.Select required>
+          <Form.Select {...register("rh")}>
             <option value="">Seleccione</option>
             <option value="1">Peticiones</option>
             <option value="2">Quejas</option>
@@ -119,46 +135,42 @@ const CreateAdminForm: FC = () => {
             Looks good!
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+
+        <Form.Group as={Col} md="4" controlId="telefonoInput">
           <Form.Label>Teléfono</Form.Label>
           <Form.Control
-            required
+            {...register("telefono")}
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese su número de teléfono"
           />
           <Form.Control.Feedback type="invalid">
             Looks good!
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
+
       <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
+        <Form.Group as={Col} md="4" controlId="emailInput">
           <Form.Label>Correo electrónico</Form.Label>
           <Form.Control
-            required
+            {...register("email")}
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Ingrese su correo electrónico"
           />
           <Form.Control.Feedback type="invalid">
             Looks good!
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomPassword">
+
+        <Form.Group as={Col} md="4" controlId="claveInput">
           <Form.Label>Contraseña</Form.Label>
-          <InputGroup hasValidation>
+          <InputGroup>
             <Form.Control
+              {...register("clave")}
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              aria-describedby="paswordInput"
-              required
+              placeholder="Ingrese su contraseña"
             />
-            <Button
-              variant="outline-primary"
-              id="paswordInput"
-              onClick={toggleShowPassword}
-            >
+            <Button variant="outline-primary" onClick={toggleShowPassword}>
               {showPassword ? (
                 <FontAwesomeIcon icon={faEyeSlash} />
               ) : (
@@ -170,18 +182,17 @@ const CreateAdminForm: FC = () => {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomPassword">
+
+        <Form.Group as={Col} md="4" controlId="confirmarClaveInput">
           <Form.Label>Confirmar contraseña</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
+              {...register("confirmarClave")}
               type={showPasswordConfirmation ? "text" : "password"}
-              placeholder="Password"
-              aria-describedby="passwordConfirmationInput"
-              required
+              placeholder="Ingrese su contraseña nuevamente"
             />
             <Button
               variant="outline-primary"
-              id="passwordConfirmationInput"
               onClick={toggleShowPasswordConfirmation}
             >
               {showPasswordConfirmation ? (
@@ -196,9 +207,15 @@ const CreateAdminForm: FC = () => {
           </InputGroup>
         </Form.Group>
       </Row>
+
       <Row>
         <Col md="4" className="mx-auto">
-          <Button type="submit" variant="primary" className="w-100">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-100"
+            disabled={isSubmitting}
+          >
             Crear administrador
           </Button>
         </Col>

@@ -3,6 +3,7 @@ import Spinner from "@/components/ui/Spinner"
 import { Route, Switch } from "wouter"
 import NotFound from "@/pages/NotFound"
 import PublicRoutes from "@/routes/PublicRoutes"
+import { Toaster } from "sonner"
 
 const App: FC = () => (
   <Suspense fallback={<Spinner />}>
@@ -11,6 +12,7 @@ const App: FC = () => (
         <PublicRoutes />
         <Route component={NotFound} />
       </Switch>
+      <Toaster position="top-center" richColors />
     </main>
   </Suspense>
 )
