@@ -8,6 +8,8 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { format } from "date-fns"
 
+const DEFAULT_DATE = format(new Date(), "yyyy-MM-dd")
+
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
@@ -15,7 +17,6 @@ const CreateAdminForm: FC = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    // reset,
   } = useForm<AdminFormData>({
     resolver: yupResolver(adminSchema),
   })
@@ -23,7 +24,6 @@ const CreateAdminForm: FC = () => {
   // TODO: Add submit handler
   const onSubmit: SubmitHandler<AdminFormData> = async (data) => {
     console.log(data)
-    // reset()
   }
 
   return (
@@ -93,7 +93,7 @@ const CreateAdminForm: FC = () => {
             {...register("fechaNacimiento")}
             isInvalid={errors.fechaNacimiento}
             type="date"
-            defaultValue={format(new Date(), "yyyy-MM-dd")}
+            defaultValue={DEFAULT_DATE}
             placeholder="Ingrese su fecha de nacimiento"
           />
           <Form.Control.Feedback type="invalid">
