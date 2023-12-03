@@ -8,7 +8,7 @@ interface RequestOptions {
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 })
 
 const request = async <T>(options: RequestOptions): Promise<T> => {
@@ -22,7 +22,7 @@ const request = async <T>(options: RequestOptions): Promise<T> => {
       params,
     })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(`Error making ${method} request to ${url}:`, error)
     throw error

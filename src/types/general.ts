@@ -1,3 +1,3 @@
-export interface JSONResponse {
+export interface Message {
   message: string
 }
