@@ -7,16 +7,16 @@ import { type AdminFormData, adminSchema } from "@/types/usuarioTypes"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import useParametros from "@/hooks/useParams"
+import { createAdmin } from "@/api/usuarios"
+import { useLocation } from "wouter"
 
 const PARAMS = "TipoDocumento,Genero,TipoSangre,Rh"
 
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
-
+  const [_, setLocation] = useLocation()
   const { data: params, isLoading } = useParametros(PARAMS)
-
-  console.log(params)
 
   const {
     register,
@@ -26,9 +26,12 @@ const CreateAdminForm: FC = () => {
     resolver: yupResolver(adminSchema),
   })
 
-  // TODO: Add submit handler
-  const onSubmit: SubmitHandler<AdminFormData> = async (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<AdminFormData> = async (formData) => {
+    const response = await createAdmin(formData)
+    console.log(response.status)
+    if (response.status === 201) {
+      setLocation("/login")
+    }
   }
 
   return (
@@ -39,6 +42,7 @@ const CreateAdminForm: FC = () => {
           <Form.Select
             {...register("tipoDocumento")}
             isInvalid={errors.tipoDocumento}
+            disabled={isLoading || isSubmitting}
           >
             <option value="">Seleccione</option>
             {params?.TipoDocumento?.map((item) => (
@@ -57,6 +61,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("numeroDocumento")}
             isInvalid={errors.numeroDocumento}
+            disabled={isSubmitting}
             type="text"
             placeholder="Ingrese su número de documento"
           />
@@ -70,6 +75,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("nombres")}
             isInvalid={errors.nombres}
+            disabled={isSubmitting}
             type="text"
             placeholder="Ingrese sus nombres"
           />
@@ -85,6 +91,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("apellidos")}
             isInvalid={errors.apellidos}
+            disabled={isSubmitting}
             type="text"
             placeholder="Ingrese sus apellidos"
           />
@@ -98,6 +105,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("fechaNacimiento")}
             isInvalid={errors.fechaNacimiento}
+            disabled={isSubmitting}
             type="date"
             placeholder="Ingrese su fecha de nacimiento"
           />
@@ -108,7 +116,11 @@ const CreateAdminForm: FC = () => {
 
         <Form.Group as={Col} md="4" controlId="generoInput">
           <Form.Label>Género</Form.Label>
-          <Form.Select {...register("genero")} isInvalid={errors.genero}>
+          <Form.Select
+            {...register("genero")}
+            isInvalid={errors.genero}
+            disabled={isLoading || isSubmitting}
+          >
             <option value="">Seleccione</option>
             {params?.Genero?.map((item) => (
               <option key={item._id} value={item._id}>
@@ -128,6 +140,7 @@ const CreateAdminForm: FC = () => {
           <Form.Select
             {...register("tipoSangre")}
             isInvalid={errors.tipoSangre}
+            disabled={isLoading || isSubmitting}
           >
             <option value="">Seleccione</option>
             {params?.TipoSangre?.map((item) => (
@@ -143,7 +156,11 @@ const CreateAdminForm: FC = () => {
 
         <Form.Group as={Col} md="4" controlId="rhInput">
           <Form.Label>RH</Form.Label>
-          <Form.Select {...register("rh")} isInvalid={errors.rh}>
+          <Form.Select
+            {...register("rh")}
+            isInvalid={errors.rh}
+            disabled={isLoading || isSubmitting}
+          >
             <option value="">Seleccione</option>
             {params?.Rh?.map((item) => (
               <option key={item._id} value={item._id}>
@@ -161,6 +178,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("telefono")}
             isInvalid={errors.telefono}
+            disabled={isSubmitting}
             type="number"
             placeholder="Ingrese su número de teléfono"
           />
@@ -176,6 +194,7 @@ const CreateAdminForm: FC = () => {
           <Form.Control
             {...register("email")}
             isInvalid={errors.email}
+            disabled={isSubmitting}
             type="text"
             placeholder="Ingrese su correo electrónico"
           />
@@ -190,6 +209,7 @@ const CreateAdminForm: FC = () => {
             <Form.Control
               {...register("clave")}
               isInvalid={errors.clave}
+              disabled={isSubmitting}
               type={showPassword ? "text" : "password"}
               placeholder="Ingrese su contraseña"
             />
@@ -212,6 +232,7 @@ const CreateAdminForm: FC = () => {
             <Form.Control
               {...register("confirmarClave")}
               isInvalid={errors.confirmarClave}
+              disabled={isSubmitting}
               type={showPasswordConfirmation ? "text" : "password"}
               placeholder="Ingrese su contraseña nuevamente"
             />
@@ -238,7 +259,7 @@ const CreateAdminForm: FC = () => {
             type="submit"
             variant="primary"
             className="w-100"
-            disabled={isSubmitting}
+            disabled={isLoading || isSubmitting}
           >
             Crear administrador
           </Button>

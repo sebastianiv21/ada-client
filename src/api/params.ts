@@ -16,7 +16,6 @@ export const fetchParams = async (
 
     return data
   } catch (error) {
-    toast.error("Error al cargar los parámetros")
-    throw error
+    return toast.error("Error al cargar los parámetros")
   }
 }
