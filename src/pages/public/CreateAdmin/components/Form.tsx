@@ -6,7 +6,7 @@ import useToggle from "@/hooks/useToggle"
 import { type AdminFormData, adminSchema } from "@/types/usuarioTypes"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import api from "@/api/server"
+import { getParams } from "@/api/params"
 // import useParametros from "@/hooks/useParams"
 
 const CreateAdminForm: FC = () => {
@@ -16,12 +16,8 @@ const CreateAdminForm: FC = () => {
   console.log(import.meta.env.VITE_API_URL)
 
   const fetchParams = async () => {
-    const { data } = await api({
-      method: "GET",
-      url: "/parametros",
-      params: { lista: "TipoDocumento,Rh" },
-    })
-    console.log(data)
+    const data = await getParams("TipoDocumento")
+    console.log({ data })
   }
 
   useEffect(() => {
