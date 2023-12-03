@@ -1,4 +1,4 @@
-import { type FC } from "react"
+import { type FC, useEffect } from "react"
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
@@ -6,13 +6,28 @@ import useToggle from "@/hooks/useToggle"
 import { type AdminFormData, adminSchema } from "@/types/usuarioTypes"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { format } from "date-fns"
-
-const DEFAULT_DATE = format(new Date(), "yyyy-MM-dd")
+import api from "@/api/server"
+// import useParametros from "@/hooks/useParams"
 
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
+
+  console.log(import.meta.env.VITE_API_URL)
+
+  const fetchParams = async () => {
+    const { data } = await api({
+      method: "GET",
+      url: "/parametros",
+      params: { lista: "TipoDocumento,Rh" },
+    })
+    console.log(data)
+  }
+
+  useEffect(() => {
+    fetchParams()
+  }, [])
+
   const {
     register,
     handleSubmit,
@@ -93,7 +108,6 @@ const CreateAdminForm: FC = () => {
             {...register("fechaNacimiento")}
             isInvalid={errors.fechaNacimiento}
             type="date"
-            defaultValue={DEFAULT_DATE}
             placeholder="Ingrese su fecha de nacimiento"
           />
           <Form.Control.Feedback type="invalid">

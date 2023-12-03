@@ -1,16 +1,21 @@
-import { useState } from "react"
-import { useQuery } from "@tanstack/react-query"
+// import { type Params } from "@/types/paramsTypes"
+import { getParams } from "@/api/params"
+import { useEffect } from "react"
 
-type UseParams = (initialState?: boolean) => [boolean, () => void]
+// type UseParams = (lista: string) => Params
 
-const useParams: UseParams = (initialState = false) => {
-  const [state, setState] = useState<boolean>(initialState)
-
-  const toggleState: () => void = () => {
-    setState(!state)
+const useParametros = (lista: string) => {
+  const [params, setParams] = useState<Params | Message>({})
+  const fetchParams = async () => {
+    const response = await getParams(lista)
+    return response
   }
 
-  return [state, toggleState]
+  useEffect(() => {
+
+
+
+  return
 }
 
-export default useParams
+export default useParametros
