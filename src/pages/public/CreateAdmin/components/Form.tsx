@@ -1,4 +1,4 @@
-import { type FC, useEffect } from "react"
+import { type FC } from "react"
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
@@ -6,23 +6,26 @@ import useToggle from "@/hooks/useToggle"
 import { type AdminFormData, adminSchema } from "@/types/usuarioTypes"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { getParams } from "@/api/params"
-// import useParametros from "@/hooks/useParams"
+import useParametros from "@/hooks/useParams"
 
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
 
-  console.log(import.meta.env.VITE_API_URL)
+  const { data: params, isLoading } = useParametros("TipoDocumento,Rh")
 
-  const fetchParams = async () => {
-    const data = await getParams("TipoDocumento")
-    console.log({ data })
-  }
+  console.log(params)
 
-  useEffect(() => {
-    fetchParams()
-  }, [])
+  // console.log({ params })
+
+  // const fetchParams = async () => {
+  //   const data = await getParams("TipoDocumento")
+  //   console.log({ data })
+  // }
+  //
+  // useEffect(() => {
+  //   fetchParams()
+  // }, [])
 
   const {
     register,

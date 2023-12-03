@@ -1,21 +1,15 @@
 // import { type Params } from "@/types/paramsTypes"
-import { getParams } from "@/api/params"
+import { fetchParams } from "@/api/params"
+import { useQuery } from "@tanstack/react-query"
 import { useEffect } from "react"
 
 // type UseParams = (lista: string) => Params
 
 const useParametros = (lista: string) => {
-  const [params, setParams] = useState<Params | Message>({})
-  const fetchParams = async () => {
-    const response = await getParams(lista)
-    return response
-  }
-
-  useEffect(() => {
-
-
-
-  return
+  return useQuery({
+    queryKey: ["params", lista],
+    queryFn: fetchParams,
+  })
 }
 
 export default useParametros
