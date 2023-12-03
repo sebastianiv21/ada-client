@@ -18,17 +18,6 @@ const CreateAdminForm: FC = () => {
 
   console.log(params)
 
-  // console.log({ params })
-
-  // const fetchParams = async () => {
-  //   const data = await getParams("TipoDocumento")
-  //   console.log({ data })
-  // }
-  //
-  // useEffect(() => {
-  //   fetchParams()
-  // }, [])
-
   const {
     register,
     handleSubmit,
