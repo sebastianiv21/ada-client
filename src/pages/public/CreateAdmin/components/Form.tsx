@@ -8,11 +8,13 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import useParametros from "@/hooks/useParams"
 
+const PARAMS = "TipoDocumento,Genero,TipoSangre,Rh"
+
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
 
-  const { data: params, isLoading } = useParametros("TipoDocumento,Rh")
+  const { data: params, isLoading } = useParametros(PARAMS)
 
   console.log(params)
 
@@ -50,10 +52,11 @@ const CreateAdminForm: FC = () => {
             isInvalid={errors.tipoDocumento}
           >
             <option value="">Seleccione</option>
-            <option value="1">Peticiones</option>
-            <option value="2">Quejas</option>
-            <option value="3">Reclamos</option>
-            <option value="4">Sugerencias</option>
+            {params?.TipoDocumento?.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.nombre}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {errors.tipoDocumento?.message}
@@ -118,10 +121,11 @@ const CreateAdminForm: FC = () => {
           <Form.Label>Género</Form.Label>
           <Form.Select {...register("genero")} isInvalid={errors.genero}>
             <option value="">Seleccione</option>
-            <option value="1">Peticiones</option>
-            <option value="2">Quejas</option>
-            <option value="3">Reclamos</option>
-            <option value="4">Sugerencias</option>
+            {params?.Genero?.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.nombre}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {errors.genero?.message}
@@ -137,10 +141,11 @@ const CreateAdminForm: FC = () => {
             isInvalid={errors.tipoSangre}
           >
             <option value="">Seleccione</option>
-            <option value="1">Peticiones</option>
-            <option value="2">Quejas</option>
-            <option value="3">Reclamos</option>
-            <option value="4">Sugerencias</option>
+            {params?.TipoSangre?.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.nombre}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {errors.tipoSangre?.message}
@@ -151,10 +156,11 @@ const CreateAdminForm: FC = () => {
           <Form.Label>RH</Form.Label>
           <Form.Select {...register("rh")} isInvalid={errors.rh}>
             <option value="">Seleccione</option>
-            <option value="1">Peticiones</option>
-            <option value="2">Quejas</option>
-            <option value="3">Reclamos</option>
-            <option value="4">Sugerencias</option>
+            {params?.Rh?.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.nombre}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {errors.rh?.message}
