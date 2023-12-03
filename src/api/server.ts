@@ -1,4 +1,4 @@
-import axios, { type Method } from "axios"
+import axios, { type AxiosResponse, type Method } from "axios"
 
 interface RequestOptions {
   method: Method
@@ -11,7 +11,9 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 })
 
-const request = async <T>(options: RequestOptions): Promise<T> => {
+const request = async <T>(
+  options: RequestOptions,
+): Promise<AxiosResponse<T>> => {
   const { method, url, params = {}, data = null } = options
 
   try {
