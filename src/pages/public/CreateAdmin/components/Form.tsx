@@ -28,7 +28,7 @@ const CreateAdminForm: FC = () => {
 
   const onSubmit: SubmitHandler<AdminFormData> = async (formData) => {
     const response = await createAdmin(formData)
-    console.log(response.status)
+
     if (response.status === 201) {
       setLocation("/login")
     }
