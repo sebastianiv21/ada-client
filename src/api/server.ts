@@ -5,6 +5,7 @@ interface RequestOptions {
   url: string
   data?: Record<string, unknown> | null
   params?: Record<string, unknown>
+  withCredentials?: boolean
 }
 
 const api = axios.create({
@@ -14,7 +15,13 @@ const api = axios.create({
 const request = async <T>(
   options: RequestOptions,
 ): Promise<AxiosResponse<T>> => {
-  const { method, url, params = {}, data = null } = options
+  const {
+    method,
+    url,
+    params = {},
+    data = null,
+    withCredentials = false,
+  } = options
 
   try {
     const response = await api.request<T>({
@@ -22,6 +29,7 @@ const request = async <T>(
       url,
       data,
       params,
+      withCredentials,
     })
 
     return response

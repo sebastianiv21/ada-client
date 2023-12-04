@@ -7,12 +7,11 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { type LoginFormData, loginSchema } from "@/types/usuarioTypes"
 import useToggle from "@/hooks/useToggle"
-import { useAuthStore } from "@/context/authStore"
-import { login } from "@/api/auth"
+import useAuth from "@/hooks/useAuth"
 
 const LoginForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
-  const setAccessToken = useAuthStore((state) => state.setAccessToken)
+  const { loginUser } = useAuth()
 
   const {
     register,
@@ -23,12 +22,7 @@ const LoginForm: FC = () => {
   })
 
   const onSubmit: SubmitHandler<LoginFormData> = async (formData) => {
-    const response = await login(formData)
-
-    if (response.status === 200) {
-      setAccessToken(response.data.accessToken)
-      console.log(response)
-    }
+    await loginUser(formData)
   }
 
   return (
@@ -53,7 +47,7 @@ const LoginForm: FC = () => {
             {...register("clave")}
             isInvalid={errors.clave}
             disabled={isSubmitting}
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Ingrese su contraseña"
           />
           <Button variant="outline-primary" onClick={toggleShowPassword}>

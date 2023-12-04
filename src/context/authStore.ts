@@ -1,11 +1,28 @@
 import create from "zustand"
 
-type AuthStore = {
+interface Auth {
+  accessToken: string
+  rol: string
+  idUsuario: string
+}
+
+interface AuthStore {
   accessToken: string | null
-  setAccessToken: (token: string) => void
+  role: string | null
+  userId: string | null
+  setAuth: (auth: Auth) => void
+  setToken: (accessToken: string) => void
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
   accessToken: null,
-  setAccessToken: (token) => set(() => ({ accessToken: token })),
+  role: null,
+  userId: null,
+  setAuth: (auth) =>
+    set(() => ({
+      accessToken: auth.accessToken,
+      role: auth.rol,
+      userId: auth.idUsuario,
+    })),
+  setToken: (accessToken) => set(() => ({ accessToken })),
 }))
