@@ -1,36 +1,50 @@
-import { type FC, useState } from "react"
+import useAuth from "@/hooks/useAuth"
+import {
+  type RecuperarClaveFormData,
+  recuperarClaveSchema,
+} from "@/types/usuarioTypes"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { type FC } from "react"
 import { Button, Form } from "react-bootstrap"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
 const ForgotPasswordForm: FC = () => {
-  const [validated, setValidated] = useState(false)
+  const { recuperarClave } = useAuth()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<RecuperarClaveFormData>({
+    resolver: yupResolver(recuperarClaveSchema),
+  })
 
-  // TODO: Add submit handler
-  const handleSubmit = (event: any): any => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
-    setValidated(true)
+  const onSubmit: SubmitHandler<RecuperarClaveFormData> = async (formData) => {
+    await recuperarClave(formData)
+    reset()
   }
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="validationCustomUsername">
+    <Form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-3" controlId="emailInput">
         <Form.Label>Correo electrónico</Form.Label>
         <Form.Control
+          {...register("email")}
+          isInvalid={errors.email}
           type="text"
-          placeholder="Username"
-          aria-describedby="inputGroupPrepend"
-          required
+          placeholder="Ingrese su correo electrónico"
         />
         <Form.Control.Feedback type="invalid">
-          Please choose a username.
+          {errors.email?.message}
         </Form.Control.Feedback>
       </Form.Group>
       <section className="d-flex">
-        <Button type="submit" variant="primary" className="mx-auto">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mx-auto"
+          disabled={isSubmitting}
+        >
           Recuperar contraseña
         </Button>
       </section>

@@ -1,5 +1,9 @@
-import { type LoginFormData } from "@/types/usuarioTypes"
+import {
+  type LoginFormData,
+  type RecuperarClaveFormData,
+} from "@/types/usuarioTypes"
 import api from "./server"
+import { type Message } from "@/types/general"
 
 interface RefreshResponse {
   accessToken: string
@@ -37,6 +41,23 @@ export const refresh = async (): Promise<string> => {
     })
 
     return response.data.accessToken
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const recuperarClave = async (
+  formData: RecuperarClaveFormData,
+): Promise<Message> => {
+  try {
+    const response = await api<Message>({
+      method: "POST",
+      url: "/auth/recuperar-clave",
+      data: formData,
+    })
+
+    return response.data
   } catch (error) {
     console.error(error)
     throw error
