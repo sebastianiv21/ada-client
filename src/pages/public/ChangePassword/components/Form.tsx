@@ -85,7 +85,7 @@ const ChangePasswordForm: FC = () => {
             className="mx-auto"
             disabled={isSubmitting}
           >
-            Recuperar contraseña
+            Cambiar contraseña
           </Button>
         </section>
       </Stack>

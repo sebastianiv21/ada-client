@@ -11,7 +11,7 @@ import {
   type RecuperarClaveFormData,
 } from "@/types/usuarioTypes"
 import { toast } from "sonner"
-import { useParams } from "wouter"
+import { useLocation, useParams } from "wouter"
 
 type UseAuth = () => {
   loginUser: (formData: LoginFormData) => Promise<void>
@@ -21,7 +21,8 @@ type UseAuth = () => {
 }
 
 const useAuth: UseAuth = () => {
-  const params = useParams()
+  const { token } = useParams()
+  const [_, setLocation] = useLocation()
   const setAuth = useAuthStore((state) => state.setAuth)
   const setToken = useAuthStore((state) => state.setToken)
 
@@ -61,15 +62,16 @@ const useAuth: UseAuth = () => {
   const cambiarClave = async (
     formData: CambiarClaveFormData,
   ): Promise<void> => {
-    console.log(params.token)
+    console.log(token)
     console.log(formData)
-    // try {
-    //   const { message } = await cambiarClaveService(formData)
-    //
-    //   toast.success(message)
-    // } catch (error) {
-    //   toast.error(error?.response?.data.message)
-    // }
+    try {
+      const { message } = await cambiarClaveService(formData, token)
+
+      toast.success(message)
+      setLocation("/login")
+    } catch (error) {
+      toast.error(error?.response?.data.message)
+    }
   }
 
   return {
