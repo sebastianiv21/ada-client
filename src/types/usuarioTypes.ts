@@ -5,12 +5,14 @@ const claveSchema = string()
   .min(6, "La contraseña debe tener al menos 6 caracteres")
   .max(20, "La contraseña no puede tener más de 20 caracteres")
 
-const cambiarClaveSchema = object({
+export const cambiarClaveSchema = object({
   clave: claveSchema,
   confirmarClave: string()
     .required("La confirmación de la contraseña es requerida")
     .oneOf([ref("clave")], "Las contraseñas no coinciden"),
 })
+
+export type CambiarClaveFormData = InferType<typeof cambiarClaveSchema>
 
 export const adminSchema = cambiarClaveSchema.shape({
   tipoDocumento: string().required("Seleccione el tipo de documento"),

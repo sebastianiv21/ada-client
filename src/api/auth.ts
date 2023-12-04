@@ -1,4 +1,5 @@
 import {
+  CambiarClaveFormData,
   type LoginFormData,
   type RecuperarClaveFormData,
 } from "@/types/usuarioTypes"
@@ -56,6 +57,25 @@ export const recuperarClave = async (
       url: "/auth/recuperar-clave",
       data: formData,
     })
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const cambiarClave = async (
+  formData: CambiarClaveFormData,
+): Promise<Message> => {
+  try {
+    const response = await api<Message>({
+      method: "POST",
+      url: "/auth/cambiar-clave",
+      data: formData,
+    })
+
+    console.log(response)
 
     return response.data
   } catch (error) {
