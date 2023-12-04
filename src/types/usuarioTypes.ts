@@ -58,6 +58,8 @@ export const recuperarClaveSchema = object({
     .required("El correo electrónico es requerido"),
 })
 
+export type RecuperarClaveFormData = InferType<typeof recuperarClaveSchema>
+
 export const loginSchema = recuperarClaveSchema.shape({
   clave: claveSchema,
 })
