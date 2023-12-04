@@ -7,9 +7,12 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { type LoginFormData, loginSchema } from "@/types/usuarioTypes"
 import useToggle from "@/hooks/useToggle"
+import { useAuthStore } from "@/context/authStore"
+import { login } from "@/api/auth"
 
 const LoginForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
+  const setAccessToken = useAuthStore((state) => state.setAccessToken)
 
   const {
     register,
@@ -19,7 +22,14 @@ const LoginForm: FC = () => {
     resolver: yupResolver(loginSchema),
   })
 
-  const onSubmit: SubmitHandler<LoginFormData> = async (formData) => {}
+  const onSubmit: SubmitHandler<LoginFormData> = async (formData) => {
+    const response = await login(formData)
+
+    if (response.status === 200) {
+      setAccessToken(response.data.accessToken)
+      console.log(response)
+    }
+  }
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)}>
