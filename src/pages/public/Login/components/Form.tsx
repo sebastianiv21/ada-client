@@ -1,51 +1,60 @@
-import { type FC, useState } from "react"
+import { type FC } from "react"
 import { Button, Form, InputGroup } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye } from "@fortawesome/free-solid-svg-icons"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "wouter"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { type LoginFormData, loginSchema } from "@/types/usuarioTypes"
+import useToggle from "@/hooks/useToggle"
 
 const LoginForm: FC = () => {
-  const [validated, setValidated] = useState(false)
+  const [showPassword, toggleShowPassword] = useToggle()
 
-  // TODO: Add submit handler
-  const handleSubmit = (event: any): any => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: yupResolver(loginSchema),
+  })
 
-    setValidated(true)
-  }
+  const onSubmit: SubmitHandler<LoginFormData> = async (formData) => {}
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="validationCustomUsername">
+    <Form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-3" controlId="emailInput">
         <Form.Label>Correo electrónico</Form.Label>
         <Form.Control
+          {...register("email")}
+          isInvalid={errors.email}
+          disabled={isSubmitting}
           type="text"
-          placeholder="Username"
-          aria-describedby="inputGroupPrepend"
-          required
+          placeholder="Ingrese su correo electrónico"
         />
         <Form.Control.Feedback type="invalid">
-          Please choose a username.
+          {errors.email?.message}
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="validationCustomPassword">
+      <Form.Group className="mb-3" controlId="passwordInput">
         <Form.Label>Contraseña</Form.Label>
         <InputGroup hasValidation>
           <Form.Control
+            {...register("clave")}
+            isInvalid={errors.clave}
+            disabled={isSubmitting}
             type="password"
-            placeholder="Password"
-            aria-describedby="inputGroupPrepend"
-            required
+            placeholder="Ingrese su contraseña"
           />
-          <Button variant="outline-primary" id="inputGroupPrepend">
-            <FontAwesomeIcon icon={faEye} />
+          <Button variant="outline-primary" onClick={toggleShowPassword}>
+            {showPassword ? (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            ) : (
+              <FontAwesomeIcon icon={faEye} />
+            )}
           </Button>
           <Form.Control.Feedback type="invalid">
-            Please choose a password.
+            {errors.clave?.message}
           </Form.Control.Feedback>
         </InputGroup>
       </Form.Group>
@@ -56,7 +65,12 @@ const LoginForm: FC = () => {
         ¿Olvidó su contraseña?
       </Link>
       <section className="d-flex">
-        <Button type="submit" variant="primary" className="mx-auto">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mx-auto"
+          disabled={isSubmitting}
+        >
           Iniciar sesión
         </Button>
       </section>

@@ -61,3 +61,5 @@ export const recuperarClaveSchema = object({
 export const loginSchema = recuperarClaveSchema.shape({
   clave: claveSchema,
 })
+
+export type LoginFormData = InferType<typeof loginSchema>
