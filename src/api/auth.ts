@@ -5,7 +5,6 @@ import {
 } from "@/types/usuarioTypes"
 import api from "./server"
 import { type Message } from "@/types/general"
-import { AxiosResponse } from "axios"
 
 interface RefreshResponse {
   accessToken: string
