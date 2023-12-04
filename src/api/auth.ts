@@ -1,10 +1,11 @@
 import {
-  CambiarClaveFormData,
+  type CambiarClaveFormData,
   type LoginFormData,
   type RecuperarClaveFormData,
 } from "@/types/usuarioTypes"
 import api from "./server"
 import { type Message } from "@/types/general"
+import { AxiosResponse } from "axios"
 
 interface RefreshResponse {
   accessToken: string
@@ -67,15 +68,14 @@ export const recuperarClave = async (
 
 export const cambiarClave = async (
   formData: CambiarClaveFormData,
+  token: string | undefined,
 ): Promise<Message> => {
   try {
     const response = await api<Message>({
       method: "POST",
-      url: "/auth/cambiar-clave",
+      url: `/auth/cambiar-clave/${token}`,
       data: formData,
     })
-
-    console.log(response)
 
     return response.data
   } catch (error) {
