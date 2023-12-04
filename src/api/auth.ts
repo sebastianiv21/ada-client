@@ -1,10 +1,8 @@
 import { type LoginFormData } from "@/types/usuarioTypes"
 import api from "./server"
 
-type AccessToken = string
-
 interface RefreshResponse {
-  accessToken: AccessToken
+  accessToken: string
 }
 
 interface LoginResponse extends RefreshResponse {
@@ -30,7 +28,7 @@ export const login = async (
   }
 }
 
-export const refresh = async (): Promise<AccessToken> => {
+export const refresh = async (): Promise<string> => {
   try {
     const response = await api<RefreshResponse>({
       method: "GET",
