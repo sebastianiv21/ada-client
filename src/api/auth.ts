@@ -1,7 +1,5 @@
 import { type LoginFormData } from "@/types/usuarioTypes"
-import { toast } from "sonner"
 import api from "./server"
-import { type AxiosResponse } from "axios"
 
 type AccessToken = string
 
