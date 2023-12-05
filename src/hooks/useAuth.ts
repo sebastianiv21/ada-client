@@ -19,7 +19,7 @@ type UseAuth = () => {
   refreshToken: () => Promise<void>
   recuperarClave: (formData: RecuperarClaveFormData) => Promise<void>
   cambiarClave: (formData: CambiarClaveFormData) => Promise<void>
-  logoutUser: () => void
+  logoutUser: () => Promise<void>
 }
 
 const useAuth: UseAuth = () => {
