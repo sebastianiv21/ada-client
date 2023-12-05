@@ -12,6 +12,7 @@ import Login from "@/pages/public/Login/Login"
 import ForgotPassword from "@/pages/public/ForgotPassword/ForgotPassword"
 import CreateAdmin from "@/pages/public/CreateAdmin/CreateAdmin"
 import ChangePassword from "@/pages/public/ChangePassword/ChangePassword"
+import PrivateRoutes from "./PrivateRoutes"
 
 const PublicRoutes: FC = () => {
   return (
