@@ -1,9 +1,9 @@
 import { create } from "zustand"
 
 interface Auth {
-  accessToken: string
-  rol: string
-  idUsuario: string
+  accessToken: string | null
+  rol: string | null
+  idUsuario: string | null
 }
 
 interface AuthStore {
