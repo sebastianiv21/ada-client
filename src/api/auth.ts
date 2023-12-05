@@ -48,7 +48,7 @@ export const refresh = async (): Promise<string> => {
   }
 }
 
-export const recuperarClave = async (
+export const recuperarClaveService = async (
   formData: RecuperarClaveFormData,
 ): Promise<Message> => {
   try {
@@ -65,7 +65,7 @@ export const recuperarClave = async (
   }
 }
 
-export const cambiarClave = async (
+export const cambiarClaveService = async (
   formData: CambiarClaveFormData,
   token: string | undefined,
 ): Promise<Message> => {

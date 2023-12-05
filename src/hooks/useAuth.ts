@@ -1,7 +1,7 @@
 import {
-  cambiarClave as cambiarClaveService,
+  cambiarClaveService,
   login,
-  recuperarClave as recuperarClaveService,
+  recuperarClaveService,
   refresh,
 } from "@/api/auth"
 import { useAuthStore } from "@/context/authStore"
