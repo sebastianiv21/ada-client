@@ -1,6 +1,7 @@
 import {
   cambiarClaveService,
   login,
+  logoutService,
   recuperarClaveService,
   refresh,
 } from "@/api/auth"
@@ -18,6 +19,7 @@ type UseAuth = () => {
   refreshToken: () => Promise<void>
   recuperarClave: (formData: RecuperarClaveFormData) => Promise<void>
   cambiarClave: (formData: CambiarClaveFormData) => Promise<void>
+  logoutUser: () => void
 }
 
 const useAuth: UseAuth = () => {
@@ -74,11 +76,27 @@ const useAuth: UseAuth = () => {
     }
   }
 
+  const logoutUser = async (): Promise<void> => {
+    try {
+      const { message } = await logoutService()
+      setAuth({
+        accessToken: null,
+        rol: null,
+        idUsuario: null,
+      })
+      toast.success(message)
+      setLocation("/login")
+    } catch (error) {
+      toast.error(error?.response?.data.message)
+    }
+  }
+
   return {
     loginUser,
     refreshToken,
     recuperarClave,
     cambiarClave,
+    logoutUser,
   }
 }
 

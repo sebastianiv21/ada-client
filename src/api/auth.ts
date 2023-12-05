@@ -82,3 +82,18 @@ export const cambiarClaveService = async (
     throw error
   }
 }
+
+export const logoutService = async (): Promise<Message> => {
+  try {
+    const response = await api<Message>({
+      method: "POST",
+      url: "/auth/logout",
+      withCredentials: true,
+    })
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
