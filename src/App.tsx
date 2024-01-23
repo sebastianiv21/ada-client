@@ -6,16 +6,16 @@ import PrivateRoutes from "./routes/PrivateRoutes"
 import { Toaster } from "sonner"
 
 const App: FC = () => (
-  <Suspense fallback={<Spinner />}>
-    <main className="text-secondary min-vh-100 d-flex flex-column bg-primary">
+  <main className="text-secondary min-vh-100 d-flex flex-column bg-primary">
+    <Suspense fallback={<Spinner />}>
       <Switch>
         <Route path="/app/:any*" component={PrivateRoutes} />
 
         <Route path="/:any*" component={PublicRoutes} />
       </Switch>
       <Toaster position="top-center" richColors />
-    </main>
-  </Suspense>
+    </Suspense>
+  </main>
 )
 
 export default App

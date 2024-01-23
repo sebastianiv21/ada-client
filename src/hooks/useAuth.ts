@@ -35,7 +35,7 @@ const useAuth: UseAuth = () => {
       toast.success("Ingreso exitoso")
       setAuth(authInfo)
     } catch (error) {
-      toast.error(error?.response?.data.message)
+      toast.error(error?.message)
     }
   }
 
@@ -45,7 +45,7 @@ const useAuth: UseAuth = () => {
 
       setToken(accessToken)
     } catch (error) {
-      toast.error(error?.response?.data.message)
+      toast.error(error?.message)
     }
   }
 
@@ -57,7 +57,7 @@ const useAuth: UseAuth = () => {
 
       toast.success(message)
     } catch (error) {
-      toast.error(error?.response?.data.message)
+      toast.error(error?.message)
     }
   }
 
@@ -72,7 +72,7 @@ const useAuth: UseAuth = () => {
       toast.success(message)
       setLocation("/login")
     } catch (error) {
-      toast.error(error?.response?.data.message)
+      toast.error(error?.message)
     }
   }
 
@@ -87,7 +87,7 @@ const useAuth: UseAuth = () => {
       toast.success(message)
       setLocation("/login")
     } catch (error) {
-      toast.error(error?.response?.data.message)
+      toast.error(error?.message)
     }
   }
 
