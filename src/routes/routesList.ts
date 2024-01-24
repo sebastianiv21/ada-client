@@ -1,6 +1,7 @@
 export const PUBLIC_ROUTES = {
   HOME: "/",
   LOGIN: "/login",
+  LOGOUT: "/logout",
   CONTACT: "/contacto",
   FORGOT_PASSWORD: "/recuperar-clave",
   CHANGE_PASSWORD: "/cambiar-clave/:token",
@@ -9,5 +10,4 @@ export const PUBLIC_ROUTES = {
 
 export const PRIVATE_ROUTES = {
   HOME: "/app",
-  LOGOUT: "/logout",
 }

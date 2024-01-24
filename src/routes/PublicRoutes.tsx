@@ -1,5 +1,6 @@
 import { type FC } from "react"
 import { Route, Switch } from "wouter"
+import { PUBLIC_ROUTES } from "./routesList"
 import Navbar from "@/pages/public/components/Navbar/Navbar"
 import Footer from "@/pages/public/components/Footer/Footer"
 import Landing from "@/pages/public/Landing/Landing"
@@ -10,7 +11,7 @@ import Login from "@/pages/public/Login/Login"
 import ForgotPassword from "@/pages/public/ForgotPassword/ForgotPassword"
 import CreateAdmin from "@/pages/public/CreateAdmin/CreateAdmin"
 import ChangePassword from "@/pages/public/ChangePassword/ChangePassword"
-import { PUBLIC_ROUTES } from "./routesList"
+import Logout from "@/pages/private/Logout"
 
 const PublicRoutes: FC = () => {
   return (
@@ -21,6 +22,7 @@ const PublicRoutes: FC = () => {
           <Route path="/" component={Landing} />
           <Route path={PUBLIC_ROUTES.CONTACT} component={Contact} />
           <Route path={PUBLIC_ROUTES.LOGIN} component={Login} />
+          <Route path={PUBLIC_ROUTES.LOGOUT} component={Logout} />
           <Route
             path={PUBLIC_ROUTES.FORGOT_PASSWORD}
             component={ForgotPassword}

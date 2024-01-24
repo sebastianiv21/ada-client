@@ -1,3 +1,4 @@
+import { PUBLIC_ROUTES } from "@/routes/routesList"
 import { type FC } from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "wouter"
@@ -11,7 +12,7 @@ const navLinks: NavLink[] = [
   { label: "Inicio", href: "/app" },
   // { label: "PQRS", href: "/pqrs" },
   { label: "Contacto", href: "/contacto" },
-  { label: "Cerrar sesión", href: "/app/logout" },
+  { label: "Cerrar sesión", href: PUBLIC_ROUTES.LOGOUT },
 ]
 
 const PrivateNavbar: FC = () => {

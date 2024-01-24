@@ -37,7 +37,7 @@ const useAuth: UseAuth = () => {
       toast.success("Ingreso exitoso")
       setAuth(authInfo)
 
-      setLocation(PRIVATE_ROUTES.DASHBOARD)
+      setLocation(PRIVATE_ROUTES.HOME)
 
       console.log(authInfo)
     } catch (error) {
