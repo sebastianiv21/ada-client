@@ -25,7 +25,7 @@ type UseAuth = () => {
 
 const useAuth: UseAuth = () => {
   const { token } = useParams()
-  const [_, setLocation] = useLocation()
+  const [, setLocation] = useLocation()
   const setAuth = useAuthStore((state) => state.setAuth)
   const setToken = useAuthStore((state) => state.setToken)
   const resetAuth = useAuthStore((state) => state.resetAuth)
