@@ -6,18 +6,25 @@ interface Auth {
   idUsuario: string | null
 }
 
-interface AuthStore {
+interface AuthInfo {
   accessToken: string | null
   role: string | null
   userId: string | null
+}
+
+interface AuthStore extends AuthInfo {
   setAuth: (auth: Auth) => void
   setToken: (accessToken: string) => void
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
+const initialState: AuthInfo = {
   accessToken: null,
   role: null,
   userId: null,
+}
+
+export const useAuthStore = create<AuthStore>((set) => ({
+  ...initialState,
   setAuth: (auth) =>
     set(() => ({
       accessToken: auth.accessToken,
@@ -25,4 +32,5 @@ export const useAuthStore = create<AuthStore>((set) => ({
       userId: auth.idUsuario,
     })),
   setToken: (accessToken) => set(() => ({ accessToken })),
+  resetAuth: () => set(() => initialState,
 }))
