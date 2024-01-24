@@ -34,8 +34,16 @@ const useAuth: UseAuth = () => {
 
       toast.success("Ingreso exitoso")
       setAuth(authInfo)
+
+      setLocation("/app")
+
+      console.log(authInfo)
     } catch (error) {
-      toast.error(error?.message)
+      if (error?.code === "ERR_NETWORK") {
+        toast.error("No se pudo conectar con el servidor")
+      } else {
+        toast.error(error?.response?.data?.message)
+      }
     }
   }
 
@@ -45,7 +53,11 @@ const useAuth: UseAuth = () => {
 
       setToken(accessToken)
     } catch (error) {
-      toast.error(error?.message)
+      if (error?.code === "ERR_NETWORK") {
+        toast.error("No se pudo conectar con el servidor")
+      } else {
+        toast.error(error?.response?.data?.message)
+      }
     }
   }
 
@@ -57,7 +69,11 @@ const useAuth: UseAuth = () => {
 
       toast.success(message)
     } catch (error) {
-      toast.error(error?.message)
+      if (error?.code === "ERR_NETWORK") {
+        toast.error("No se pudo conectar con el servidor")
+      } else {
+        toast.error(error?.response?.data?.message)
+      }
     }
   }
 
@@ -72,7 +88,11 @@ const useAuth: UseAuth = () => {
       toast.success(message)
       setLocation("/login")
     } catch (error) {
-      toast.error(error?.message)
+      if (error?.code === "ERR_NETWORK") {
+        toast.error("No se pudo conectar con el servidor")
+      } else {
+        toast.error(error?.response?.data?.message)
+      }
     }
   }
 
@@ -85,9 +105,12 @@ const useAuth: UseAuth = () => {
         idUsuario: null,
       })
       toast.success(message)
-      setLocation("/login")
     } catch (error) {
-      toast.error(error?.message)
+      if (error?.code === "ERR_NETWORK") {
+        toast.error("No se pudo conectar con el servidor")
+      } else {
+        toast.error(error?.response?.data?.message)
+      }
     }
   }
 

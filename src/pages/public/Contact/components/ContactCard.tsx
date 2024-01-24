@@ -51,14 +51,10 @@ const ContactCard: FC = () => {
       <Card.Body>
         <Stack direction="vertical" gap={3}>
           {contactInfo.map((item, index) => (
-            <>
-              <CardSection
-                key={index}
-                icon={item.icon}
-                content={item.content}
-              />
+            <div key={index}>
+              <CardSection icon={item.icon} content={item.content} />
               {contactInfo.length - 1 !== index && <hr />}
-            </>
+            </div>
           ))}
         </Stack>
       </Card.Body>

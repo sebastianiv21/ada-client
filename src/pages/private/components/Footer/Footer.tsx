@@ -3,12 +3,12 @@ import { Container } from "react-bootstrap"
 
 const Footer: FC = () => {
   return (
-    <footer className="mt-auto bg-primary text-light py-2">
+    <footer className="mt-auto bg-primary text-muted text-center py-2">
       <Container>
-        <h3>
+        <h5>
           Grupo de Investigación en Electrónica, Telecomunicaciones e
           Informática - GETI © Universidad Surcolombiana
-        </h3>
+        </h5>
       </Container>
     </footer>
   )
