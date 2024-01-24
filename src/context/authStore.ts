@@ -32,5 +32,5 @@ export const useAuthStore = create<AuthStore>((set) => ({
       userId: auth.idUsuario,
     })),
   setToken: (accessToken) => set(() => ({ accessToken })),
-  resetAuth: () => set(() => initialState,
+  resetAuth: () => set(() => initialState),
 }))
