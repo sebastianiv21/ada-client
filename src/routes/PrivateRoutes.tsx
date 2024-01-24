@@ -5,7 +5,6 @@ import Footer from "@/pages/private/components/Footer/Footer"
 import Landing from "@/pages/public/Landing/Landing"
 import NotFound from "@/pages/NotFound"
 import { Container } from "react-bootstrap"
-import Logout from "@/pages/private/Logout"
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routesList"
 import { useAuthStore } from "@/context/authStore"
 
@@ -14,7 +13,7 @@ const PrivateRoutes: FC = () => {
   const [, setLocation] = useLocation()
 
   if (accessToken === null) {
-    setLocation(PUBLIC_ROUTES.LOGIN)
+    setLocation(PUBLIC_ROUTES.LOGIN, { replace: true })
   }
 
   return (

@@ -1,4 +1,4 @@
-import { PUBLIC_ROUTES } from "@/routes/routesList"
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "@/routes/routesList"
 import { type FC } from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "wouter"
@@ -9,7 +9,7 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "Inicio", href: "/app" },
+  { label: "Inicio", href: PRIVATE_ROUTES.HOME },
   // { label: "PQRS", href: "/pqrs" },
   { label: "Contacto", href: "/contacto" },
   { label: "Cerrar sesión", href: PUBLIC_ROUTES.LOGOUT },
