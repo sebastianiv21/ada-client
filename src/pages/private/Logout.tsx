@@ -1,4 +1,5 @@
 import useAuth from "@/hooks/useAuth"
+import { PUBLIC_ROUTES } from "@/routes/routesList"
 import { type FC, useEffect } from "react"
 import { Redirect } from "wouter"
 
@@ -9,7 +10,7 @@ const Logout: FC = () => {
     logoutUser()
   }, [])
 
-  return <Redirect to="/login" />
+  return <Redirect to={PUBLIC_ROUTES.LOGIN} />
 }
 
 export default Logout

@@ -6,6 +6,7 @@ import {
   refresh,
 } from "@/api/auth"
 import { useAuthStore } from "@/context/authStore"
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "@/routes/routesList"
 import {
   type CambiarClaveFormData,
   type LoginFormData,
@@ -27,6 +28,7 @@ const useAuth: UseAuth = () => {
   const [_, setLocation] = useLocation()
   const setAuth = useAuthStore((state) => state.setAuth)
   const setToken = useAuthStore((state) => state.setToken)
+  const resetAuth = useAuthStore((state) => state.resetAuth)
 
   const loginUser = async (formData: LoginFormData): Promise<void> => {
     try {
@@ -35,7 +37,7 @@ const useAuth: UseAuth = () => {
       toast.success("Ingreso exitoso")
       setAuth(authInfo)
 
-      setLocation("/app")
+      setLocation(PRIVATE_ROUTES.DASHBOARD)
 
       console.log(authInfo)
     } catch (error) {
@@ -86,7 +88,7 @@ const useAuth: UseAuth = () => {
       const { message } = await cambiarClaveService(formData, token)
 
       toast.success(message)
-      setLocation("/login")
+      setLocation(PUBLIC_ROUTES.LOGIN)
     } catch (error) {
       if (error?.code === "ERR_NETWORK") {
         toast.error("No se pudo conectar con el servidor")
@@ -99,11 +101,7 @@ const useAuth: UseAuth = () => {
   const logoutUser = async (): Promise<void> => {
     try {
       const { message } = await logoutService()
-      setAuth({
-        accessToken: null,
-        rol: null,
-        idUsuario: null,
-      })
+      resetAuth()
       toast.success(message)
     } catch (error) {
       if (error?.code === "ERR_NETWORK") {

@@ -1,3 +1,4 @@
+import { PUBLIC_ROUTES } from "@/routes/routesList"
 import { type FC } from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "wouter"
@@ -10,8 +11,8 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: "Inicio", href: "/" },
   // { label: "PQRS", href: "/pqrs" },
-  { label: "Contacto", href: "/contacto" },
-  { label: "Ingresar", href: "/login" },
+  { label: "Contacto", href: PUBLIC_ROUTES.CONTACT },
+  { label: "Ingresar", href: PUBLIC_ROUTES.LOGIN },
 ]
 
 const PublicNavbar: FC = () => {

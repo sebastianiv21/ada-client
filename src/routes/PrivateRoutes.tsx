@@ -5,8 +5,8 @@ import Footer from "@/pages/private/components/Footer/Footer"
 import Landing from "@/pages/public/Landing/Landing"
 import NotFound from "@/pages/NotFound"
 import { Container } from "react-bootstrap"
-import Contact from "@/pages/public/Contact/Contact"
 import Logout from "@/pages/private/Logout"
+import { PRIVATE_ROUTES } from "./routesList"
 
 const PrivateRoutes: FC = () => {
   return (
@@ -14,9 +14,8 @@ const PrivateRoutes: FC = () => {
       <Navbar />
       <Container>
         <Switch>
-          <Route path="/app" component={Landing} />
-          <Route path="/app/contacto" component={Contact} />
-          <Route path="/app/logout" component={Logout} />
+          <Route path={PRIVATE_ROUTES.HOME} component={Landing} />
+          <Route path={PRIVATE_ROUTES.LOGOUT} component={Logout} />
           <Route component={NotFound} />
         </Switch>
       </Container>

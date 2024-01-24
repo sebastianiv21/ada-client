@@ -4,12 +4,16 @@ import { Route, Switch } from "wouter"
 import PublicRoutes from "@/routes/PublicRoutes"
 import PrivateRoutes from "./routes/PrivateRoutes"
 import { Toaster } from "sonner"
+import { PRIVATE_ROUTES } from "./routes/routesList"
 
 const App: FC = () => (
   <main className="text-secondary min-vh-100 d-flex flex-column bg-primary">
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Route path="/app/:any*" component={PrivateRoutes} />
+        <Route
+          path={`${PRIVATE_ROUTES.HOME}/:any*`}
+          component={PrivateRoutes}
+        />
 
         <Route path="/:any*" component={PublicRoutes} />
       </Switch>

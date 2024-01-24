@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import useParametros from "@/hooks/useParams"
 import { createAdmin } from "@/api/usuarios"
 import { useLocation } from "wouter"
+import { PUBLIC_ROUTES } from "@/routes/routesList"
 
 const PARAMS = "TipoDocumento,Genero,TipoSangre,Rh"
 
@@ -30,7 +31,7 @@ const CreateAdminForm: FC = () => {
     const response = await createAdmin(formData)
 
     if (response.status === 201) {
-      setLocation("/login")
+      setLocation(PUBLIC_ROUTES.LOGIN)
     }
   }
 
