@@ -11,7 +11,10 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: "Inicio", href: PRIVATE_ROUTES.HOME },
   // { label: "PQRS", href: "/pqrs" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Citas", href: PRIVATE_ROUTES.CITAS },
+  { label: "Órdenes médicas", href: PRIVATE_ROUTES.ORDENES },
+  { label: "Resultados", href: PRIVATE_ROUTES.RESULTADOS },
+  { label: "Estadísticas", href: PRIVATE_ROUTES.ESTADISTICAS },
   { label: "Cerrar sesión", href: PUBLIC_ROUTES.LOGOUT },
 ]
 
