@@ -7,10 +7,12 @@ import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routesList"
 import { useAuthStore } from "@/context/authStore"
 import Welcome from "@/pages/private/Welcome/Welcome"
 import CustomNavbar from "@/components/ui/Navbar"
+import Users from "@/pages/private/Users/Users"
 
 const navLinks = [
   { label: "Inicio", href: PRIVATE_ROUTES.HOME },
   // { label: "PQRS", href: "/pqrs" },
+  { label: "Usuarios", href: PRIVATE_ROUTES.USERS },
   { label: "Citas", href: PRIVATE_ROUTES.CITAS },
   { label: "Órdenes médicas", href: PRIVATE_ROUTES.ORDENES },
   { label: "Resultados", href: PRIVATE_ROUTES.RESULTADOS },
@@ -32,6 +34,7 @@ const PrivateRoutes: FC = () => {
       <Container className="my-auto">
         <Switch>
           <Route path={PRIVATE_ROUTES.HOME} component={Welcome} />
+          <Route path={PRIVATE_ROUTES.USERS} component={Users} />
           <Route component={NotFound} />
         </Switch>
       </Container>

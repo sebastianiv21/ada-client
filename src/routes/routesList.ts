@@ -12,6 +12,7 @@ const PRIVATE_BASE: string = "/app"
 
 export const PRIVATE_ROUTES = {
   HOME: PRIVATE_BASE,
+  USERS: `${PRIVATE_BASE}/usuarios`,
   CITAS: `${PRIVATE_BASE}/citas`,
   ORDENES: `${PRIVATE_BASE}/ordenes`,
   RESULTADOS: `${PRIVATE_BASE}/resultados`,
