@@ -1,4 +1,3 @@
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "@/routes/routesList"
 import { type FC } from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "wouter"
@@ -8,21 +7,16 @@ interface NavLink {
   href: string
 }
 
-const navLinks: NavLink[] = [
-  { label: "Inicio", href: PRIVATE_ROUTES.HOME },
-  // { label: "PQRS", href: "/pqrs" },
-  { label: "Citas", href: PRIVATE_ROUTES.CITAS },
-  { label: "Órdenes médicas", href: PRIVATE_ROUTES.ORDENES },
-  { label: "Resultados", href: PRIVATE_ROUTES.RESULTADOS },
-  { label: "Estadísticas", href: PRIVATE_ROUTES.ESTADISTICAS },
-  { label: "Cerrar sesión", href: PUBLIC_ROUTES.LOGOUT },
-]
+interface CustomNavbarProps {
+  homeRoute: string
+  navLinks: NavLink[]
+}
 
-const PrivateNavbar: FC = () => {
+const CustomNavbar: FC<CustomNavbarProps> = ({ homeRoute, navLinks }) => {
   return (
     <Navbar expand="lg" sticky="top" bg="primary" data-bs-theme="light">
       <Container>
-        <Link href={PRIVATE_ROUTES.HOME}>
+        <Link href={homeRoute}>
           <Navbar.Brand className="d-flex gap-2 text-secondary">
             <img
               alt="ADA Health logo"
@@ -49,4 +43,4 @@ const PrivateNavbar: FC = () => {
   )
 }
 
-export default PrivateNavbar
+export default CustomNavbar
