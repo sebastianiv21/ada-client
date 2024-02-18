@@ -19,7 +19,7 @@ const PrivateNavbar: FC = () => {
   return (
     <Navbar expand="lg" sticky="top" bg="primary" data-bs-theme="light">
       <Container>
-        <Link href="/">
+        <Link href={PRIVATE_ROUTES.HOME}>
           <Navbar.Brand className="d-flex gap-2 text-secondary">
             <img
               alt="ADA Health logo"

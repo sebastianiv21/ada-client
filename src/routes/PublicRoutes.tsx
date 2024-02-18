@@ -1,8 +1,8 @@
 import { type FC } from "react"
 import { Route, Switch } from "wouter"
 import { PUBLIC_ROUTES } from "./routesList"
-import Navbar from "@/pages/public/components/Navbar/Navbar"
-import Footer from "@/pages/public/components/Footer/Footer"
+import PublicNavbar from "@/pages/public/components/Navbar/Navbar"
+import PublicFooter from "@/pages/public/components/Footer/Footer"
 import Landing from "@/pages/public/Landing/Landing"
 import NotFound from "@/pages/NotFound"
 import { Container } from "react-bootstrap"
@@ -16,7 +16,7 @@ import Logout from "@/pages/private/Logout"
 const PublicRoutes: FC = () => {
   return (
     <>
-      <Navbar />
+      <PublicNavbar />
       <Container>
         <Switch>
           <Route path="/" component={Landing} />
@@ -35,7 +35,7 @@ const PublicRoutes: FC = () => {
           <Route component={NotFound} />
         </Switch>
       </Container>
-      <Footer />
+      <PublicFooter />
     </>
   )
 }

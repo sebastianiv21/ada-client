@@ -8,6 +8,11 @@ export const PUBLIC_ROUTES = {
   CREATE_ADMIN: "/crear-admin",
 }
 
+const PRIVATE_BASE: string = "/app"
+
 export const PRIVATE_ROUTES = {
-  HOME: "/app",
+  HOME: PRIVATE_BASE,
+  CITAS: `${PRIVATE_BASE}/citas`,
+  RESULTADOS: `${PRIVATE_BASE}/resultados`,
+  ESTADISTICAS: `${PRIVATE_BASE}/estadisticas`,
 }

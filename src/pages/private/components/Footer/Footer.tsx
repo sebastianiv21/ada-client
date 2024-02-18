@@ -5,10 +5,10 @@ const Footer: FC = () => {
   return (
     <footer className="mt-auto bg-primary text-muted text-center py-2">
       <Container>
-        <h5>
+        <h6>
           Grupo de Investigación en Electrónica, Telecomunicaciones e
           Informática - GETI © Universidad Surcolombiana
-        </h5>
+        </h6>
       </Container>
     </footer>
   )
