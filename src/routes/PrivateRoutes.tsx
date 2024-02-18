@@ -31,7 +31,7 @@ const PrivateRoutes: FC = () => {
   return (
     <>
       <CustomNavbar homeRoute={PRIVATE_ROUTES.HOME} navLinks={navLinks} />
-      <Container className="my-auto">
+      <Container>
         <Switch>
           <Route path={PRIVATE_ROUTES.HOME} component={Welcome} />
           <Route path={PRIVATE_ROUTES.USERS} component={Users} />

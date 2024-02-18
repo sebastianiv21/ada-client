@@ -29,7 +29,7 @@ const Users: FC = () => {
   }
 
   return (
-    <Stack gap={3}>
+    <Stack gap={3} className="mt-3">
       <h1>
         <FontAwesomeIcon icon={faUsers} /> Usuarios
       </h1>

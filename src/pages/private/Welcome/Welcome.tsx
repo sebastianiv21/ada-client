@@ -5,7 +5,7 @@ import WelcomeCardsSection from "./components/WelcomeCardsSection"
 
 const Welcome: FC = () => {
   return (
-    <Row className="g-4">
+    <Row className="g-4 mt-5">
       <Col md={4} className="d-flex justify-content-center">
         <Image src={welcomeImage} fluid />
       </Col>
