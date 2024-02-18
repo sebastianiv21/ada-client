@@ -1,7 +1,6 @@
 import { type FC } from "react"
 import { Route, Switch } from "wouter"
 import { PUBLIC_ROUTES } from "./routesList"
-import PublicNavbar from "@/pages/public/components/Navbar/Navbar"
 import PublicFooter from "@/pages/public/components/Footer/Footer"
 import Landing from "@/pages/public/Landing/Landing"
 import NotFound from "@/pages/NotFound"
@@ -12,11 +11,19 @@ import ForgotPassword from "@/pages/public/ForgotPassword/ForgotPassword"
 import CreateAdmin from "@/pages/public/CreateAdmin/CreateAdmin"
 import ChangePassword from "@/pages/public/ChangePassword/ChangePassword"
 import Logout from "@/pages/private/Logout"
+import CustomNavbar from "@/components/ui/Navbar"
+
+const navLinks = [
+  { label: "Inicio", href: "/" },
+  // { label: "PQRS", href: "/pqrs" },
+  { label: "Contacto", href: PUBLIC_ROUTES.CONTACT },
+  { label: "Ingresar", href: PUBLIC_ROUTES.LOGIN },
+]
 
 const PublicRoutes: FC = () => {
   return (
     <>
-      <PublicNavbar />
+      <CustomNavbar homeRoute={PUBLIC_ROUTES.HOME} navLinks={navLinks} />
       <Container>
         <Switch>
           <Route path="/" component={Landing} />
