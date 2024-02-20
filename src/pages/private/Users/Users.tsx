@@ -1,14 +1,21 @@
-import { faPlus, faUsers } from "@fortawesome/free-solid-svg-icons"
+import {
+  faPenToSquare,
+  faPlus,
+  faTrash,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { type FC } from "react"
+import { type FC, useState } from "react"
 import { Button, Col, Row, Stack } from "react-bootstrap"
 import UsersFilters from "./components/UsersFilters"
 import CustomTable from "@/components/ui/Table"
+import CustomModal from "@/components/ui/Modal"
 
 const Users: FC = () => {
+  const [showDelete, setShowDelete] = useState<boolean>(false)
   const customTableProps = {
-    headers: ["NOMBRE", "CORREO", "ROL", "ESTADO", "ACCIONES"],
-    items: [],
+    headers: ["NÚMERO DE DOCUMENTO", "NOMBRE", "ROL", "ESTADO", "ACCIONES"],
+    items: [1],
     renderItems: () => {
       return (
         <tr>
@@ -16,7 +23,27 @@ const Users: FC = () => {
           <td>Correo</td>
           <td>Rol</td>
           <td>Estado</td>
-          <td>Acciones</td>
+          <td>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => {
+                console.log("editar")
+              }}
+            >
+              <FontAwesomeIcon icon={faPenToSquare} />
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              className="ms-2"
+              onClick={() => {
+                setShowDelete(true)
+              }}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </Button>
+          </td>
         </tr>
       )
     },
@@ -46,6 +73,20 @@ const Users: FC = () => {
       </Row>
 
       <CustomTable {...customTableProps} />
+
+      <CustomModal
+        show={showDelete}
+        title="Eliminar usuario"
+        body="¿Está seguro de eliminar el usuario?"
+        cancelButtonText="Cancelar"
+        confirmButtonText="Eliminar"
+        onHide={() => {
+          setShowDelete(false)
+        }}
+        onConfirm={() => {
+          setShowDelete(false)
+        }}
+      />
     </Stack>
   )
 }
