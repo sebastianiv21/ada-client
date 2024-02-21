@@ -1,4 +1,4 @@
-import { date, type InferType, number, object, ref, string } from "yup"
+import { boolean, date, type InferType, number, object, ref, string } from "yup"
 
 const claveSchema = string()
   .required("La contraseña es requerida")
@@ -52,6 +52,7 @@ export const usuarioSchema = adminSchema.shape({
     parentesco: string(),
     telefono: number().typeError("Ingrese un teléfono válido"),
   }),
+  activo: boolean(),
 })
 
 export type UserFormData = InferType<typeof usuarioSchema>

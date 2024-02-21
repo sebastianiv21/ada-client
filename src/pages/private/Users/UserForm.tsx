@@ -1,7 +1,9 @@
 import useToggle from "@/hooks/useToggle"
 import { PRIVATE_ROUTES } from "@/routes/routesList"
+import { UserFormData, usuarioSchema } from "@/types/usuarioTypes"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { yupResolver } from "@hookform/resolvers/yup"
 import { type FC } from "react"
 import {
   Button,
@@ -12,12 +14,31 @@ import {
   Row,
   Stack,
 } from "react-bootstrap"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { useLocation } from "wouter"
 
-const UserForm: FC = () => {
+const UserForm: FC<{ initialUserFormData: UserFormData }> = ({
+  initialUserFormData,
+}) => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
   const [, setLocation] = useLocation()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<UserFormData>({
+    resolver: yupResolver(usuarioSchema),
+    defaultValues: initialUserFormData,
+  })
+
+  const onSubmit: SubmitHandler<UserFormData> = async (formData) => {
+    // const response = await createAdmin(formData)
+    // if (response.status === 201) {
+    //   setLocation(PUBLIC_ROUTES.LOGIN)
+    // }
+  }
 
   return (
     <Form noValidate>

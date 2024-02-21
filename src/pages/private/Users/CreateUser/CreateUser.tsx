@@ -6,6 +6,34 @@ import { Row, Stack } from "react-bootstrap"
 import { useLocation } from "wouter"
 import UserForm from "../UserForm"
 
+const initialUserFormData = {
+  tipoDocumento: "",
+  numeroDocumento: "",
+  nombres: "",
+  apellidos: "",
+  fechaNacimiento: new Date(),
+  genero: "",
+  tipoSangre: "",
+  rh: "",
+  estadoCivil: "",
+  eps: "",
+  telefono: 0,
+  telefono2: 0,
+  direccion: "",
+  municipio: "",
+  rol: "",
+  activo: true,
+  email: "",
+  clave: "",
+  confirmarClave: "",
+  contacto: {
+    nombres: "",
+    apellidos: "",
+    parentesco: "",
+    telefono: 0,
+  },
+}
+
 const CreateUser: FC = () => {
   const [, setLocation] = useLocation()
 
@@ -23,7 +51,7 @@ const CreateUser: FC = () => {
       </h1>
 
       <Row className="justify-content-center mx-1">
-        <UserForm />
+        <UserForm initialUserFormData={initialUserFormData} />
       </Row>
     </Stack>
   )
