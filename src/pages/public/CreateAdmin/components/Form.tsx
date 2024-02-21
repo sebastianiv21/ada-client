@@ -16,7 +16,7 @@ const PARAMS = "TipoDocumento,Genero,TipoSangre,Rh"
 const CreateAdminForm: FC = () => {
   const [showPassword, toggleShowPassword] = useToggle()
   const [showPasswordConfirmation, toggleShowPasswordConfirmation] = useToggle()
-  const [_, setLocation] = useLocation()
+  const [, setLocation] = useLocation()
   const { data: params, isLoading } = useParametros(PARAMS)
 
   const {

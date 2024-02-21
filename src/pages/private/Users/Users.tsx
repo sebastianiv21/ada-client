@@ -10,9 +10,27 @@ import { Button, Col, Row, Stack } from "react-bootstrap"
 import UsersFilters from "./components/UsersFilters"
 import CustomTable from "@/components/ui/Table"
 import CustomModal from "@/components/ui/Modal"
+import { useLocation } from "wouter"
+import { PRIVATE_ROUTES } from "@/routes/routesList"
 
 const Users: FC = () => {
   const [showDelete, setShowDelete] = useState<boolean>(false)
+  const [, setLocation] = useLocation()
+
+  const deleteModalProps = {
+    show: showDelete,
+    title: "Eliminar usuario",
+    body: "¿Está seguro de eliminar el usuario?",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Eliminar",
+    onHide: () => {
+      setShowDelete(false)
+    },
+    onConfirm: () => {
+      setShowDelete(false)
+    },
+  }
+
   const customTableProps = {
     headers: ["NÚMERO DE DOCUMENTO", "NOMBRE", "ROL", "ESTADO", "ACCIONES"],
     items: [1],
@@ -66,7 +84,13 @@ const Users: FC = () => {
           <UsersFilters />
         </Col>
         <Col xs={2} className="d-flex">
-          <Button variant="secondary" className="ms-auto">
+          <Button
+            variant="secondary"
+            className="ms-auto"
+            onClick={() => {
+              setLocation(`${PRIVATE_ROUTES.USERS}/crear`)
+            }}
+          >
             <FontAwesomeIcon icon={faPlus} /> Nuevo
           </Button>
         </Col>
@@ -74,19 +98,7 @@ const Users: FC = () => {
 
       <CustomTable {...customTableProps} />
 
-      <CustomModal
-        show={showDelete}
-        title="Eliminar usuario"
-        body="¿Está seguro de eliminar el usuario?"
-        cancelButtonText="Cancelar"
-        confirmButtonText="Eliminar"
-        onHide={() => {
-          setShowDelete(false)
-        }}
-        onConfirm={() => {
-          setShowDelete(false)
-        }}
-      />
+      <CustomModal {...deleteModalProps} />
     </Stack>
   )
 }

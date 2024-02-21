@@ -8,6 +8,7 @@ import { useAuthStore } from "@/context/authStore"
 import Welcome from "@/pages/private/Welcome/Welcome"
 import CustomNavbar from "@/components/ui/Navbar"
 import Users from "@/pages/private/Users/Users"
+import CreateUser from "@/pages/private/Users/CreateUser/CreateUser"
 
 const navLinks = [
   { label: "Inicio", href: PRIVATE_ROUTES.HOME },
@@ -35,6 +36,10 @@ const PrivateRoutes: FC = () => {
         <Switch>
           <Route path={PRIVATE_ROUTES.HOME} component={Welcome} />
           <Route path={PRIVATE_ROUTES.USERS} component={Users} />
+          <Route
+            path={`${PRIVATE_ROUTES.USERS}/crear`}
+            component={CreateUser}
+          />
           <Route component={NotFound} />
         </Switch>
       </Container>

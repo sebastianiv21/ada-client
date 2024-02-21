@@ -54,6 +54,8 @@ export const usuarioSchema = adminSchema.shape({
   }),
 })
 
+export type UserFormData = InferType<typeof usuarioSchema>
+
 export const recuperarClaveSchema = object({
   email: string()
     .email("Ingrese un correo electrónico válido")
