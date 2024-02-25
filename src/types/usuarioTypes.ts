@@ -45,6 +45,7 @@ export const usuarioSchema = adminSchema.shape({
   eps: string(),
   telefono2: number().typeError("Ingrese un teléfono válido"),
   direccion: string(),
+  departamento: string(),
   municipio: string(),
   contacto: object({
     nombres: string(),
