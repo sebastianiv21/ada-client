@@ -180,7 +180,7 @@ const CreateAdminForm: FC = () => {
             {...register("telefono")}
             isInvalid={errors.telefono}
             disabled={isSubmitting}
-            type="number"
+            type="text"
             placeholder="Ingrese su número de teléfono"
           />
           <Form.Control.Feedback type="invalid">

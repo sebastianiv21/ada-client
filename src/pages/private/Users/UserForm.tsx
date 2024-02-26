@@ -39,6 +39,7 @@ const UserForm: FC<{ initialUserFormData: UserFormData }> = ({
     // if (response.status === 201) {
     //   setLocation(PUBLIC_ROUTES.LOGIN)
     // }
+    console.log(formData)
   }
 
   const onCancel = (): void => {

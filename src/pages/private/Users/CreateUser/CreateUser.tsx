@@ -17,8 +17,8 @@ const initialUserFormData = {
   rh: "",
   estadoCivil: "",
   eps: "",
-  telefono: 0,
-  telefono2: 0,
+  telefono: "",
+  telefono2: "",
   direccion: "",
   municipio: "",
   rol: "",
@@ -30,7 +30,7 @@ const initialUserFormData = {
     nombres: "",
     apellidos: "",
     parentesco: "",
-    telefono: 0,
+    telefono: "",
   },
 }
 

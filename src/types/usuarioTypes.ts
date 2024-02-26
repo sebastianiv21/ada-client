@@ -1,4 +1,6 @@
-import { boolean, date, type InferType, number, object, ref, string } from "yup"
+import { boolean, date, type InferType, object, ref, string } from "yup"
+
+const REGEX_TELEFONO = /^(\+\d{1,3}-?)?\d{1,14}$/
 
 const claveSchema = string()
   .required("La contraseña es requerida")
@@ -29,9 +31,9 @@ export const adminSchema = cambiarClaveSchema.shape({
   genero: string().required("Seleccione el género"),
   tipoSangre: string().required("Seleccione el tipo de sangre"),
   rh: string().required("Seleccione el RH"),
-  telefono: number()
+  telefono: string()
     .required("El teléfono es requerido")
-    .typeError("Ingrese un teléfono válido"),
+    .matches(REGEX_TELEFONO, "Ingrese un teléfono válido"),
   email: string()
     .email("Ingrese un correo electrónico válido")
     .required("El correo electrónico es requerido"),
@@ -43,7 +45,7 @@ export const usuarioSchema = adminSchema.shape({
   rol: string().required("Seleccione el rol"),
   estadoCivil: string(),
   eps: string(),
-  telefono2: number().typeError("Ingrese un teléfono válido"),
+  telefono2: string().matches(REGEX_TELEFONO, "Ingrese un teléfono válido"),
   direccion: string(),
   departamento: string(),
   municipio: string(),
@@ -51,7 +53,7 @@ export const usuarioSchema = adminSchema.shape({
     nombres: string(),
     apellidos: string(),
     parentesco: string(),
-    telefono: number().typeError("Ingrese un teléfono válido"),
+    telefono: string().matches(REGEX_TELEFONO, "Ingrese un teléfono válido"),
   }),
   activo: boolean(),
 })
